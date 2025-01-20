@@ -101,6 +101,7 @@ aside {
     align-items: center;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
     color: white;
+    border-radius: 0 1rem 1rem 0;
 }
 
 #socials ul {
@@ -333,6 +334,7 @@ footer {
         width: 100%;
         margin: 0;
         box-sizing: border-box;
+        border-radius: 1rem 1rem 0 0;
     }
 
     #socials img,
