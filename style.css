@@ -26,12 +26,13 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
 }
 
 /* Nav */
 
 nav {
-    background-image: linear-gradient(to right, var(--primary), var(--secondary));
+    background-image: linear-gradient(to right, var(--primary), var(--accent));
     color: white;
 }
 
@@ -71,18 +72,29 @@ nav {
 
 /* Section */
 
-section {
+#sec1 {
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
     justify-content: space-between;
     gap: 1rem;
+}
+
+#sec2 {
+    font-family: Arial, sans-serif;
+    background-color: var(--background);
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    margin: 1rem;
 }
 
 /* Aside */
 
 aside {
-    background-image: linear-gradient(to right, var(--secondary), var(--primary));
-    margin: 0;
+    background-color: var(--primary);
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -133,7 +145,8 @@ aside {
     font-size: 0.9rem;
 }
 
-#socials img, #contact img {
+#socials img,
+#contact img {
     background-color: white;
     width: 50px;
     height: auto;
@@ -165,14 +178,14 @@ main {
     justify-content: center;
     align-items: center;
     gap: 10px;
-    margin: 0 auto;
+    margin: 0;
 }
 
 .card {
     display: flex;
     flex-direction: column;
-    background: #ffffff;
-    border: 1px solid #ddd;
+    background: white;
+    border: 1px solid black;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -189,13 +202,98 @@ main {
 
 .card p {
     font-size: 0.7rem;
-    color: #666;
+    color: darkgray;
 }
 
 .flex-container a {
     text-decoration: none;
     font-size: 1rem;
     color: var(--text);
+}
+
+/* Info */
+
+.contant {
+    width: 18rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+}
+
+.header {
+    background-color: var(--primary);
+    color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+.header .icon {
+    font-size: 1.6rem;
+}
+
+form {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 25px;
+    gap: 10px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #713b3b;
+    background-color: rgb(240, 240, 240);
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+textarea {
+    resize: none;
+    height: 80px;
+}
+
+#submit {
+    width: 100%;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.related-links {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.related-links a {
+    text-decoration: none;
+    padding: 5px;
+    background-color: var(--primary);
+    border-radius: 0.5rem;
+    color: white;
+    width: 100%;
+    text-align: center;
+    transition: border 0.5s ease-in-out;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.related-links a:hover {
+    background-color: var(--accent);
 }
 
 /* Footer */
@@ -213,7 +311,7 @@ footer {
 
 @media (max-width: 768px) {
     body {
-        font-size: 0.7rem;
+        font-size: 0.9rem;
     }
 
     #logo-links ul {
@@ -222,19 +320,53 @@ footer {
         gap: 1rem;
     }
 
-    section {
+    #sec1 {
+        flex-direction: column;
+    }
+
+    #sec2 {
         flex-direction: column;
     }
 
     aside {
         max-width: none;
+        width: 100%;
+        margin: 0;
+        box-sizing: border-box;
     }
 
-    #socials img, #contact img {
+    #socials img,
+    #contact img {
         width: 40px;
     }
 
-    #cards {
-        font-size: 8px;
+    .contant {
+        flex-direction: column;
+    }
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: oklch(91.87% 0.023 299.35);
+        --background: oklch(16.87% 0.033 294.07);
+        --primary: oklch(52.80% 0.222 289.82);
+        --secondary: oklch(48.61% 0.111 61.34);
+        --accent: oklch(66.24% 0.137 77.30);
+    }
+
+    .card {
+        background-color: #000000;
+        border-color: #ffffff;
+    }
+
+    .contant {
+        background-color: #000000;
+        border: 2px solid #ffffff;
+    }
+
+    input,
+    textarea {
+        background-color: white;
     }
 }
