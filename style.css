@@ -10,21 +10,78 @@
 /* Variables */
 :root {
     --text: oklab(11.75% 0.036 0.02);
+    --secondary-text: grey;
     --background: oklab(96.12% 0.000 0.00);
-    --primary: oklab(42.16% 0.058 -0.21);
-    --secondary: oklab(84.22% 0.039 0.11);
-    --accent: oklab(83.44% 0.020 0.15);
+    --primary: oklab(50.16% 0.058 -0.21);
+    --secondary: oklab(80.89% -0.029 0.02);
+    --accent: oklab(73.99% -0.033 -0.00);
+}
+
+.darkmode {
+    --text: oklch(91.87% 0.023 299.35);
+    --secondary-text: darkgrey;
+    --background: oklch(16.87% 0.033 294.07);
+    --primary: oklch(32.80% 0.222 289.82);
+    --secondary: oklab(39.72% -0.034 0.02);
+    --accent: oklab(50.06% -0.034 -0.00);
+}
+
+/* Darkmode */
+
+#theme-switch {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: var(--background);
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    transition: background-image 0.3s ease-in-out;
+}
+
+#theme-switch:hover {
+    background-image: radial-gradient(to bottom, var(--accent), var(--background));
+}
+
+#theme-switch svg {
+    fill: var(--text);
+}
+
+#theme-switch svg:last-child {
+    display: none;
+}
+
+#theme-switch svg:first-child {
+    display: block;
+}
+
+.darkmode #theme-switch svg:first-child {
+    display: none;
+}
+
+.darkmode #theme-switch svg:last-child {
+    display: block;
+    fill: var(--text);
 }
 
 /* Body */
 
+html {
+    font-family: 'flat-jooza', sans-serif;
+}
+
 body {
     background-color: var(--background);
-    font-family: 'flat-jooza', sans-serif;
     color: var(--text);
-    font-size: 16px;
     margin: 0;
     padding: 0;
+    font-size: 16px;
     box-sizing: border-box;
     transition: all 0.3s ease-in-out;
 }
@@ -32,7 +89,10 @@ body {
 /* Nav */
 
 nav {
-    background-image: linear-gradient(to right, var(--primary), var(--accent));
+    z-index: 1;
+    position: sticky;
+    top: 0;
+    background-color: var(--primary);
     color: white;
 }
 
@@ -45,6 +105,7 @@ nav {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    align-content: center;
     justify-content: center;
     flex-direction: column;
 }
@@ -61,13 +122,11 @@ nav {
 #logo-links ul li a {
     text-decoration: none;
     color: white;
-    transition: all 0.3s ease;
+    transition: all 0.12s ease;
 }
 
 #logo-links ul li a:hover {
-    color: var(--accent);
-    filter: drop-shadow(0 0 0.5rem var(--accent));
-    border-bottom: 5px solid var(--accent);
+    filter: drop-shadow(0 0 0.5rem var(--text));
 }
 
 /* Section */
@@ -94,12 +153,17 @@ nav {
 /* Aside */
 
 aside {
+    position: sticky;
+    top: 8rem;
     background-color: var(--primary);
+    min-width: 20rem;
+    max-height: 20rem;
     padding: 1rem;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+    align-content: center;
     color: white;
     border-radius: 0 1rem 1rem 0;
 }
@@ -163,6 +227,7 @@ main {
 
 .flex-container {
     display: flex;
+    justify-content: flex-end;
     padding: 20px;
 }
 
@@ -178,15 +243,19 @@ main {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    align-content: center;
+    width: min(800px, 100%);
     gap: 10px;
     margin: 0;
 }
 
 .card {
+    width: clamp(350px, 30%, 1000px);
+    height: clamp(300px, 30%, 1000px);
     display: flex;
     flex-direction: column;
-    background: white;
-    border: 1px solid black;
+    background: var(--background);
+    border: 2px solid var(--text);
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -204,7 +273,7 @@ main {
 
 .card p {
     font-size: 0.7rem;
-    color: darkgray;
+    color: var(--secondary-text);
 }
 
 .flex-container a {
@@ -217,7 +286,8 @@ main {
 
 .contant {
     width: 18rem;
-    background-color: white;
+    background-color: var(--background);
+    border: 2px solid var(--text);
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -259,7 +329,7 @@ textarea {
 }
 
 textarea {
-    resize: none;
+    resize: vertical;
     height: 80px;
 }
 
@@ -301,6 +371,7 @@ textarea {
 /* Footer */
 
 footer {
+    font-family: 'flat-jooza', sans-serif;
     background-color: var(--background);
     color: var(--text);
     display: flex;
@@ -318,7 +389,7 @@ footer {
 
     #logo-links ul {
         display: flex;
-        align-items: center;
+        align-content: center;
         gap: 1rem;
     }
 
@@ -335,7 +406,7 @@ footer {
         width: 100%;
         margin: 0;
         box-sizing: border-box;
-        border-radius: 1rem 1rem 0 0;
+        border-radius: 0;
     }
 
     #socials img,
@@ -345,31 +416,5 @@ footer {
 
     .contant {
         flex-direction: column;
-    }
-}
-
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --text: oklch(91.87% 0.023 299.35);
-        --background: oklch(16.87% 0.033 294.07);
-        --primary: oklch(52.80% 0.222 289.82);
-        --secondary: oklch(48.61% 0.111 61.34);
-        --accent: oklch(66.24% 0.137 77.30);
-    }
-
-    .card {
-        background-color: #000000;
-        border-color: #ffffff;
-    }
-
-    .contant {
-        background-color: #000000;
-        border: 2px solid #ffffff;
-    }
-
-    input,
-    textarea {
-        background-color: white;
     }
 }
