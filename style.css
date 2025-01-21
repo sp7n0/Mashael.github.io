@@ -407,6 +407,7 @@ footer {
         margin: 0;
         box-sizing: border-box;
         border-radius: 0;
+        position: static;
     }
 
     #socials img,
