@@ -38,7 +38,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    position: fixed;
     top: 10px;
     right: 10px;
     cursor: pointer;
@@ -114,19 +114,25 @@ nav {
     list-style-type: none;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction: row-reverse;
     gap: 1rem;
     padding: 5px;
+    background-image: linear-gradient(to right, #00ff91, #00d9ff);
+    -webkit-background-clip: text;
+    background-clip: text;
 }
 
 #logo-links ul li a {
     text-decoration: none;
     color: white;
+
     transition: all 0.12s ease;
 }
 
 #logo-links ul li a:hover {
-    filter: drop-shadow(0 0 0.5rem var(--text));
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: transparent;
 }
 
 /* Section */
@@ -417,5 +423,10 @@ footer {
 
     .contant {
         flex-direction: column;
+    }
+
+    #theme-switch {
+        top: initial;
+        bottom: 10px;
     }
 }
